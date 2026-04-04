@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking </title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="Dizajn.css" rel="stylesheet">
+</head>
+<body>
+
+    <div class="header-blue">
+        <div class="container">
+            <h1 class="fw-bold px-3">Booking.com</h1>
+        </div>
+    </div>
+
+    <div class="container">
+        <form id="searchForm" onsubmit="event.preventDefault(); Provera();">
+        <div class="search-container shadow-sm mb-3 mx-3">
+            <div class="row g-1">
+                <div class="col-md-3">
+                    <div class="search-input-group">
+                        <input id="Destinacija" type="text" placeholder="Enter your destination" required>
+                    </div>
+                </div>
+                
+                <div class="col-md-3">
+                    <div class="search-input-group">
+                        <input id="datum" type="text" placeholder="Check-in - Check-out" required>
+                    </div>
+                </div>
+                
+                <div class="col-md-3">
+                    <div class="search-input-group">
+                        <input id="covek" type="text" placeholder="1 Adult - 0 Children" required>
+                    </div>
+                </div>
+                
+                <div class="col-md-1 d-flex align-items-center justify-content-center bg-white border">
+                    <input type="checkbox" id="petFriendly" class="me-1"> 
+                    <small class="text-muted">Pet Friendly?</small>
+                </div>
+                
+                <div class="col-md-2">
+                    <button type="submit" class="btn-reserve w-100 h-100 fw-bold border-0">Search</button>
+                </div>
+            </div>
+        </div>
+    </form>
+
+        <div id="glavni-sadrzaj" style="margin-top: -20px;">
+            <div class="row px-3 g-4">
+                
+                <div class="col-lg-6">
+                    <div class="hotel-card shadow-sm d-flex flex-column flex-sm-row h-100 border rounded overflow-hidden bg-white">
+                        <img id="img-1" src="Kaludjerica.avif" class="hotel-img" style="width: 35%; object-fit: cover;">
+                        <div class="p-3 w-100 d-flex flex-column justify-content-between">
+                            <div class="d-flex justify-content-between">
+                                <div>
+                                    <h6 id="ime-1" class="fw-bold mb-0">Kaludjerica</h6>
+                                    <div id="stars-1" class="stars">☆☆</div>
+                                </div>
+                                <div class="text-end"><span id="cena-1" class="price-text">RSD 4,500</span></div>
+                            </div>
+                            <button onclick="prikaziPlacanje()" class="btn-reserve mt-3">Reserve</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="hotel-card shadow-sm d-flex flex-column flex-sm-row h-100 border rounded overflow-hidden bg-white">
+                        <img id="img-2" src="Lestane.jpg" class="hotel-img" style="width: 35%; object-fit: cover;">
+                        <div class="p-3 w-100 d-flex flex-column justify-content-between">
+                            <div class="d-flex justify-content-between">
+                                <div>
+                                    <h6 id="ime-2" class="fw-bold mb-0">Lestane</h6>
+                                    <div id="stars-2" class="stars">☆☆☆☆☆</div>
+                                </div>
+                                <div class="text-end"><span id="cena-2" class="price-text">RSD 2,100</span></div>
+                            </div>
+                            <button onclick="prikaziPlacanje()" class="btn-reserve mt-3">Reserve</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="hotel-card shadow-sm d-flex flex-column flex-sm-row h-100 border rounded overflow-hidden bg-white">
+                        <img src="AbuDabi.jpg" id="img-3" class="hotel-img" style="width: 35%; object-fit: cover;">
+                        <div class="p-3 w-100 d-flex flex-column justify-content-between">
+                            <div class="d-flex justify-content-between">
+                                <div>
+                                    <h6 id="ime-3" class="fw-bold mb-0">Stepa Stepanovic</h6>
+                                    <div id="stars-3" class="stars">☆☆☆☆☆</div>
+                                </div>
+                                <div class="text-end"><span id="cena-3" class="price-text">RSD 12,420</span></div>
+                            </div>
+                            <button onclick="prikaziPlacanje()" class="btn-reserve mt-3">Reserve</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="hotel-card shadow-sm d-flex flex-column flex-sm-row h-100 border rounded overflow-hidden bg-white">
+                        <img id="img-4" src="Paris.jpg" class="hotel-img" style="width: 35%; object-fit: cover;">
+                        <div class="p-3 w-100 d-flex flex-column justify-content-between">
+                            <div class="d-flex justify-content-between">
+                                <div>
+                                    <h6 id="ime-4" class="fw-bold mb-0">Pariz</h6>
+                                    <div id="stars-4" class="stars">☆☆☆☆</div>
+                                </div>
+                                <div class="text-end"><span id="cena-4" class="price-text">RSD 10,400</span></div>
+                            </div>
+                            <button onclick="prikaziPlacanje()" class="btn-reserve mt-3">Reserve</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script >
+    
+function Provera() {
+    let polje = document.getElementById('Destinacija');
+    let unos = polje.value.trim().toLowerCase();
+    if (unos == "") {
+        alert("Molimo unesite destinaciju (npr. Zlatibor)");
+        return;
+    }
+
+    
+    if (unos == "zlatibor") {
+       
+        document.getElementById("ime-1").innerText = "Titova Vila";
+        document.getElementById("img-1").src = "Zlatibor.jpg";
+        document.getElementById("img-1").alt = "Titova Vila";
+        document.getElementById("stars-1").innerHTML = "☆☆☆☆";
+        document.getElementById("cena-1").innerText = "RSD 9,000";
+
+        document.getElementById("ime-2").innerText = "Zlatibor Klub";
+        document.getElementById("img-2").src = "Apartman_1.jpg";
+        document.getElementById("img-2").alt = "Zlatibor Klub";
+        document.getElementById("stars-2").innerHTML = "☆☆";
+        document.getElementById("cena-2").innerText = "RSD 4,370";
+
+        document.getElementById("ime-3").innerText = "Apartman Zlatibor";
+         document.getElementById("img-3").src = "Apartman_2.jpg";
+        document.getElementById("img-3").alt = "Apartman Zlatibor";
+        document.getElementById("stars-3").innerHTML = "☆☆☆";
+        document.getElementById("cena-3").innerText = "RSD 7,630";
+
+        document.getElementById("ime-4").innerText = "Mona Plaza";
+         document.getElementById("img-3").src = "MonaPlaza.jpg";
+        document.getElementById("img-4").alt = "Mona Plaza ";
+        document.getElementById("stars-4").innerHTML = "☆☆☆☆";
+        document.getElementById("cena-4").innerText = "RSD 14,810";
+    }
+}
+function prikaziPlacanje() {
+
+     let polje = document.getElementById('ime-1').innerText;
+
+    if(polje=="Titova Vila"){
+
+    let kontejner = document.getElementById("glavni-sadrzaj");
+
+    kontejner.innerHTML = `
+<div class="container mt-5" style="margin-top:20px">
+    <form id="paymentForm" onsubmit="event.preventDefault(); payNow();">
+        <div class="row align-items-stretch px-3">
+            <div class="col-lg-7 mb-4 mb-lg-0">
+                <div class="hotel-card shadow-sm d-flex align-items-center h-100 border rounded bg-white overflow-hidden">
+                    <img src="Zlatibor.jpg" class="hotel-img" alt="Titova Vila" style="width: 45%; height: 70%; margin-left:5%; object-fit: cover;">
+                    <div class="p-4 w-100 d-flex flex-column justify-content-center">
+                        <h4 class="fw-bold mb-2">Titova Vila</h4>
+                        <div class="text-warning mb-2" style="font-size: 20px;">☆☆☆☆☆</div>
+                        <span class="price-text fs-5 fw-bold text-dark">RSD 9,000</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-5" style = "max-height:360px;">
+                <div id="StatusTeksta" class="payment-card shadow-sm p-4 h-100 border rounded bg-white d-flex flex-column justify-content-between">
+                    <div>
+                        <label class="form-label fw-bold small">Enter your card details:</label>
+                        <div class="mb-3">
+                            <input type="text" id="cardNum" class="form-control py-2" placeholder="Enter your card number" required>
+                        </div>
+                        <div class="row g-2 mb-3">
+                            <div class="col-8">
+                                <input type="text" class="form-control py-2" placeholder="Expiration Date" required>
+                            </div>
+                            <div class="col-4">
+                                <input type="text" class="form-control py-2" placeholder="CVV" required>
+                            </div>
+                        </div>
+                        <label class="form-label fw-bold small">Enter your email:</label>
+                        <div class="mb-3">
+                            <input type="email" id="userEmail" class="form-control py-2" placeholder="Enter your gmail" required>
+                        </div>
+                    </div>
+                    <div>
+                        <button type="submit" class="btn-reserve w-100 py-2 fw-bold shadow-sm mb-3">Pay Now</button>
+                        <div class="d-flex justify-content-center gap-4">
+                            <div class="pay-icon"><img src="Visa.png" alt="Visa"></div>
+                            <div class="pay-icon"><img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" alt="Mastercard"></div>
+                            <div class="pay-icon"><img src="https://upload.wikimedia.org/wikipedia/commons/c/c7/Google_Pay_Logo_%282020%29.svg" alt="G Pay"></div>
+                            <div class="pay-icon"><img src="https://upload.wikimedia.org/wikipedia/commons/b/b0/Apple_Pay_logo.svg" alt="Apple Pay"></div>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>`;
+
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    }
+
+}
+
+        function payNow() {
+    let status = document.getElementById("StatusTeksta");
+    let email = document.getElementById("userEmail").value;
+    let datum0 = document.getElementById("datum");
+    let datum2 = datum0.value
+    let datum1 = datum2?datum2:"22/04/2026 - 23/04/2026";
+    let broj = document.getElementById("covek");
+    let broj2 = broj.value;
+    let broj1 = broj2?broj2:"1 adult";
+            
+            status.style.minHeight = "360px";
+    status.className = "payment-card shadow-sm p-4 h-100 border rounded bg-white d-flex flex-column align-items-center justify-content-center text-center";
+            
+    status.innerHTML = `
+        <div class="w-100">
+            <h4 class="fw-bold">Thank you for your purchase!<br></h4>
+            <h4 class="fw-bold">You have purchased this reservation for ${datum1} for ${broj1}. <br></h4>
+            <h4 class="fw-bold">Notification of your purchase will be sent to ${email} email address.</h4>
+        </div>
+
+    `;
+
+} 
+
+    </script>
+</body>
+</html>
