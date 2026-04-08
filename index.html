@@ -125,11 +125,7 @@
 function Provera() {
     let polje = document.getElementById('Destinacija');
     let unos = polje.value.trim().toLowerCase();
-    if (unos == "") {
-        alert("Molimo unesite destinaciju (npr. Zlatibor)");
-        return;
-    }
-
+   
     
     if (unos == "zlatibor") {
        
@@ -157,6 +153,11 @@ function Provera() {
         document.getElementById("stars-4").innerHTML = "☆☆☆☆";
         document.getElementById("cena-4").innerText = "RSD 14,810";
     }
+     else {
+        alert("Molimo unesite drugu destinaciju (npr. Zlatibor)");
+        return;
+    }
+
 }
 function prikaziPlacanje() {
 
